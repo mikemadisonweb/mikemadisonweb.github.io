@@ -474,10 +474,6 @@ select.validation-error {
         margin-bottom: 25px;
     }
 
-    .period {
-        float: none;
-    }
-
     /* Portfolio Items */
     .portfolio-items li {
         float: none;
