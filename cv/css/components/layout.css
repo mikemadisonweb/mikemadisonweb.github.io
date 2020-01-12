@@ -1,0 +1,1441 @@
+/**
+ * Name: layout.css
+ * Version: 1.0.0
+ *	
+ *	-
+ *
+ *	T.O.C
+ *	
+ *	#General Layout 
+ *		#Header
+ *		#Content
+ *		#Footer
+ *	#Page Styles
+ *	#Responsive
+ *		#Smaller then 1024px width	
+ *		#Tablet (Portrait)
+ *		#Mobile (Portrait and Landscape )
+ *		#Mobile ( Landscape )
+ */
+
+/* ==========================================================================
+   #General Layout 
+   ========================================================================== */
+
+#wrap {
+    max-width: 1100px;
+    margin: 100px auto;
+    background-color: #fff;
+    position: relative;
+    z-index: 90;
+}
+
+/* #Header
+   ========================================================================== */
+
+#header {
+}
+
+/* #Content
+   ========================================================================== */
+
+#content {
+    min-height: 300px;
+}
+
+
+/* #Footer
+   ========================================================================== */
+
+#footer {
+    padding-top: 60px;
+}
+
+
+/* ==========================================================================
+   #Page Styles 
+   ========================================================================== */
+
+/* CV Section */
+
+.cv-section {
+    padding: 30px 0;
+    border-top: 1px solid #dadada;
+    font-size: 1.1em;
+}
+
+#header .cv-section:first-child {
+    border-top: 10px solid #fdb020;
+}
+
+/* CV Section Title */
+
+.cv-section-title img {
+    float: left;
+    display: block;
+    margin-right: 20px;
+    padding: 5px;
+    border: 1px solid #dadada;
+}
+
+.cv-section-title h1 {
+    padding-top: 5px;
+}
+
+.cv-section-title h1 small {
+    font-size: 22px;
+    line-height: 48px;
+    text-transform: uppercase;
+    display: block;
+}
+
+.cv-section-title h2 {
+    margin-bottom: 0;
+    color: #b1b1b1;
+}
+
+/* CV Item */
+
+.cv-item {
+    padding-bottom: 0px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #dadada;
+}
+
+.cv-item:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.cv-item h3 {
+    margin-bottom: 0;
+}
+
+.main-info {
+    font-size: 0.9em;
+}
+
+.social-media {
+    margin-bottom: 5px;
+}
+
+.period {
+    float: right;
+    padding: 12px 20px;
+    background-color: #b1b1b1;
+    color: #fff;
+    -webkit-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+}
+
+.cv-item:hover .period {
+    background-color: #fdb020;
+}
+
+/* Copyright */
+
+.copyright {
+    padding: 5px 0;
+    margin-bottom: 0;
+    background-color: #b1b1b1;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+/* Isotope */
+
+.portfolio-items {
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.portfolio-items li {
+    float: left;
+    width: 50%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0px;
+}
+
+.portfolio-items li img {
+    display: block;
+    width: 100%;
+}
+
+.portfolio-items li a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin-top: -24px;
+    color: #fdb020;
+    text-align: center;
+    opacity: 0;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.portfolio-items li a i {
+    font-size: 48px;
+}
+
+.portfolio-items li:hover a {
+    top: 50%;
+    opacity: 1;
+}
+
+/* Portfolio filter */
+
+.portfolio-filter ul {
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.portfolio-filter ul li {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.portfolio-filter ul li:last-child {
+    margin-right: 0;
+}
+
+.portfolio-filter ul li a {
+    display: block;
+    padding: 7px 10px;
+    color: #444;
+    text-decoration: none;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.portfolio-filter ul li a:hover,
+.portfolio-filter ul li a.active {
+    background-color: #b1b1b1;
+    color: #fff;
+}
+
+/* CV Contact */
+
+.cv-contact {
+    position: fixed;
+    top: 210px;
+    width: 240px;
+    padding: 40px;
+    -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    z-index: 100;
+}
+
+.cv-contact-toggle {
+    position: absolute;
+    top: 0;
+    right: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: #fdb020;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0 2px 2px 0;
+    -webkit-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+}
+
+.cv-contact-toggle i {
+    color: #fff;
+    font-size: 24px;
+    line-height: 50px;
+}
+
+.cv-contact-toggle:hover {
+    background-color: #d78c02;
+}
+
+/* Contact Form */
+
+#contact-form {
+    overflow: hidden;
+}
+
+#contact-form fieldset {
+    margin: 0;
+}
+
+label.validation-error {
+    color: #b55454;
+}
+
+input.validation-error,
+textarea.validation-error,
+select.validation-error {
+    border: 1px solid #a1a1a1;
+}
+
+#contact-form #formstatus {
+}
+
+#contact-form textarea {
+}
+
+#contact-form input[type="submit"] {
+    border: none;
+    background-color: #252525;
+    color: #fff;
+    text-transform: uppercase;
+    -webkit-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+}
+
+#contact-form input[type="submit"]:hover {
+    background-color: #000;
+}
+
+/* Print & Download PDF Buttons */
+
+#print,
+#pdf {
+    position: fixed;
+    right: 30px;
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-color: #fdb020;
+    text-align: center;
+    text-decoration: none;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+    z-index: 80;
+}
+
+#print i,
+#pdf i {
+    color: #fff;
+    font-size: 24px;
+    line-height: 50px;
+}
+
+#print {
+    bottom: 30px;
+}
+
+#pdf {
+    bottom: 85px;
+}
+
+#print:hover,
+#pdf:hover {
+    background-color: #d78c02;
+}
+
+
+/* ==========================================================================
+   #Responsive
+   ========================================================================== */
+
+/* #Smaller then 1400px width
+   ========================================================================== */
+
+@media (max-width: 1399px) {
+
+    #wrap {
+        margin: 50px auto;
+        max-width: 1060px;
+    }
+
+    #header {
+    }
+
+    #content {
+    }
+
+    #footer {
+        padding-top: 0;
+    }
+
+}
+
+@media (max-width: 1024px) {
+
+    #wrap {
+        margin: 0;
+    }
+
+}
+
+/* #Tablet (Portrait)
+   ========================================================================== */
+
+@media (min-width: 768px) and (max-width: 979px) {
+
+    #wrap {
+    }
+
+    #header {
+    }
+
+    #content {
+    }
+
+    #footer {
+    }
+
+    a.social-icon {
+        margin-right: 5px;
+    }
+
+    .cv-contact {
+        top: 275px;
+    }
+
+}
+
+/* #Mobile (Portrait and Landscape )
+   ========================================================================== */
+
+@media (max-width: 767px) {
+
+    body {
+        background: none;
+        background-color: #fff;
+    }
+
+    #wrap {
+    }
+
+    #header {
+    }
+
+    #header .cv-section-title {
+        text-align: center;
+    }
+
+    #content {
+    }
+
+    #footer {
+        padding-top: 0;
+    }
+
+    .row {
+        padding: 0 40px;
+    }
+
+    .row .row {
+        width: auto;
+        padding: 0 20px;
+        margin: 0;
+    }
+
+    p.last,
+    h1.last,
+    h2.last,
+    h3.last,
+    h4.last,
+    h5.last,
+    address.last,
+    ul.last,
+    ol.last {
+        margin-bottom: 0px;
+    }
+
+    .text-right {
+        text-align: left;
+    }
+
+    .cv-section-title {
+        margin-bottom: 20px;
+    }
+
+    .cv-section {
+        padding: 25px 40px;
+    }
+
+    .cv-section-title img {
+        float: none;
+        margin: 0 auto;
+    }
+
+    .cv-item {
+        padding-bottom: 10px;
+        margin-bottom: 25px;
+    }
+
+    .period {
+        float: none;
+    }
+
+    /* Portfolio Items */
+    .portfolio-items li {
+        float: none;
+        width: 100%;
+    }
+
+    .portfolio-filter ul li {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .portfolio-filter ul li:last-child {
+        margin-bottom: 0;
+    }
+
+    a.social-icon {
+        margin-right: 5px;
+    }
+
+    .cv-contact {
+        position: static;
+        top: auto;
+        width: auto;
+        padding: 0;
+        padding-bottom: 40px;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        background-color: #fff;
+        z-index: 100;
+    }
+
+    .cv-contact-toggle {
+        display: none;
+    }
+
+}
+
+/* Blue skin */
+
+/* ==========================================================================
+   #Typography
+   ========================================================================== */
+
+body {
+    background: #222 url(../img/bg-body18.png) repeat top left;
+    color: #444;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #444;
+}
+
+abbr[title] {
+    border-bottom: 1px dotted #999;
+}
+
+blockquote span {
+    color: #999999;
+}
+
+hr {
+    border: solid #efefef;
+}
+
+code {
+    border: 1px solid #e1e1e8;
+    background-color: #f7f7f7;
+    color: #d14;
+}
+
+pre {
+    border: 1px solid #e1e1e8;
+    background-color: #f7f7f7;
+}
+
+.hr {
+    border-top: 1px solid #efefef;
+}
+
+.text-highlight {
+    background-color: #d5edf8;
+    color: #111111;
+}
+
+.mute {
+    color: #aaa;
+}
+
+/* #Links
+   ========================================================================== */
+
+a,
+a:visited {
+    color: #444;
+}
+
+a:active {
+    background: transparent; /* 1 */
+}
+
+/* #Tables
+   ========================================================================== */
+
+table {
+    background-color: transparent;
+}
+
+table th,
+table td {
+    border-top: 1px solid #efefef;
+}
+
+/* #Forms
+   ========================================================================== */
+
+label span {
+    color: #ff0000;
+}
+
+input,
+textarea,
+select {
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #666;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+textarea:focus {
+    border-color: #888;
+}
+
+select:focus {
+    outline: thin dotted #333;
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+    color: #ccc;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #ccc;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #ccc;
+}
+
+/* ==========================================================================
+#Accordions
+========================================================================== */
+
+/* Accordeon */
+
+.accordion-item-toggle {
+    background-color: #b1b1b1;
+    color: #fff;
+}
+
+.accordion-item-toggle:hover,
+.accordion-item-toggle.active {
+    background-color: #2767a4;
+}
+
+/* Toogle */
+
+.toggle-item-toggle {
+    background-color: #b1b1b1;
+    color: #fff;
+}
+
+.toggle-item-toggle:hover,
+.toggle-item-toggle.active {
+    background-color: #2767a4;
+}
+
+/* ==========================================================================
+   #Alerts
+   ========================================================================== */
+
+.alert {
+    border: 1px solid #d1d1d1;
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    background-color: #f8f8f8;
+}
+
+.alert.info {
+    border: 1px solid #86cde3;
+    background-color: #cce9f2;
+    color: #3194b1;
+}
+
+.alert.success {
+    border: 1px solid #b3cda1;
+    background-color: #d8f1c6;
+    color: #749958;
+}
+
+.alert.error {
+    border: 1px solid #e1a1a1;
+    background-color: #f9d9d9;
+    color: #b55454;
+}
+
+.alert.warning {
+    border: 1px solid #d1c9ae;
+    background-color: #fbf4dd;
+    color: #978c68;
+}
+
+/* ==========================================================================
+   #Back to top
+   ========================================================================== */
+
+#back-to-top {
+    background-color: #747474;
+    color: #fafafa;
+}
+
+#back-to-top:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#back-to-top:hover i {
+    color: #fff;
+}
+
+/* ==========================================================================
+   #Buttons
+   ========================================================================== */
+
+.btn {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #444;
+}
+
+.btn:hover {
+    background: #f9f9f9;
+}
+
+/* Buton Colors */
+
+.btn-white {
+    border: 1px solid #dddddd;
+    background-color: #f7f7f7;
+    color: #444;
+}
+
+a.btn-white {
+    color: #444;
+}
+
+.btn-white:hover {
+    background: #fbfbfb;
+}
+
+.btn-black {
+    border: 1px solid #464646;
+    background-color: #464646;
+    color: #fff;
+}
+
+a.btn-black {
+    color: #fff;
+}
+
+.btn-black:hover {
+    background: #535353;
+}
+
+.btn-blue {
+    border: 1px solid #1f70ad;
+    background-color: #2778c8;
+    color: #fff;
+}
+
+a.btn-blue {
+    color: #fff;
+}
+
+.btn-blue:hover {
+    background: #287fc8;
+}
+
+.btn-red {
+    border: 1px solid #b23730;
+    background-color: #c74039;
+    color: #fff;
+}
+
+a.btn-red {
+    color: #fff;
+}
+
+.btn-red:hover {
+    background: #ce4640;
+}
+
+.btn-green {
+    border: 1px solid #819633;
+    background-color: #8da046;
+    color: #fff;
+}
+
+a.btn-green {
+    color: #fff;
+}
+
+.btn-green:hover {
+    background: #93a749;
+}
+
+/* ==========================================================================
+   #Callout Boxes
+   ========================================================================== */
+
+.callout-box {
+    background-color: #333;
+    color: #fff;
+}
+
+.callout-box.bg-img {
+    color: #fff;
+}
+
+.callout-box.bg-pattern {
+    color: #fff;
+}
+
+.callout-box.bordered {
+    border: 1px solid #efefef;
+    background-color: #f5f5f5;
+}
+
+/* ==========================================================================
+   #Custom Lists
+   ========================================================================== */
+
+ul.check li:before,
+ul.plus li:before,
+ul.pin li:before,
+ul.fill-circle li:before {
+    color: #2767a4;
+}
+
+/* ==========================================================================
+   #Dividers
+   ========================================================================== */
+
+.divider.single-line {
+    border-top: 1px solid #e2e2e2;
+}
+
+.divider.double-line {
+    border-top: 4px double #e2e2e2;
+}
+
+.divider.single-dotted {
+    background: url(../../images/bg-single-dotted.gif) repeat-x top left;
+}
+
+.divider.double-dotted {
+    background: url(../../images/bg-double-dotted.gif) repeat-x top left;
+}
+
+/* ==========================================================================
+   #Icon Boxes
+   ========================================================================== */
+
+/* Icon Box 1
+   ========================================================================== */
+
+.icon-box-1:hover > i {
+    color: #2767a4;
+}
+
+/* Icon Box 2
+   ========================================================================== */
+
+.icon-box-2:hover > i {
+    color: #2767a4;
+}
+
+/* Icon Box 3
+   ========================================================================== */
+
+.icon-box-3:hover > i {
+    color: #2767a4;
+}
+
+/* Icon Box 4
+   ========================================================================== */
+
+.icon-box-4 > i {
+    border: 1px solid #969696;
+    background-color: #e1e1e1;
+    color: #444444;
+}
+
+.icon-box-4 .icon-box-content {
+    border: 1px solid #e0e0e0;
+    background-color: #f4f4f4;
+}
+
+.icon-box-4:hover > i {
+    color: #2767a4;
+}
+
+/* Icon Box 5
+   ========================================================================== */
+
+.icon-box-5 > i {
+    border: 1px solid #969696;
+    background-color: #e1e1e1;
+    color: #444444;
+}
+
+.icon-box-5 .icon-box-content {
+    border: 1px solid #e0e0e0;
+    background-color: #f4f4f4;
+}
+
+.icon-box-5:hover > i {
+    color: #2767a4;
+}
+
+/* ==========================================================================
+   #Parallax
+   ========================================================================== */
+
+.parallax {
+    color: #fff;
+}
+
+.parallax h1,
+.parallax h2,
+.parallax h3,
+.parallax h4,
+.parallax h5,
+.parallax h6 {
+    color: #fff;
+}
+
+.parallax abbr[title] {
+    border-bottom: 1px dotted #fff;
+}
+
+/* ==========================================================================
+   #Pie charts
+   ========================================================================== */
+
+.pie-chart i,
+.pie-chart .pie-chart-custom-text,
+.pie-chart .pie-chart-percent {
+    color: #444444;
+}
+
+/* ==========================================================================
+   #Pricing Tables
+   ========================================================================== */
+
+.pricing-table {
+    border: 1px solid #ccc;
+}
+
+.pricing-table-offer ul li {
+    border-top: 1px solid #ccc;
+}
+
+.pricing-table:hover {
+    border-color: #2767a4;
+}
+
+/* ==========================================================================
+   #ProgressBars
+   ========================================================================== */
+
+.progress-bar-description span:after {
+    border-top: 7px solid #444444;
+    border-left: 10px solid rgba(0, 0, 0, 0);
+}
+
+.progress-bar-description span {
+    background-color: #444444;
+    color: #fff;
+}
+
+.progress-bar {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.progress-bar .progress-bar-outer {
+    background-color: #2767a4;
+}
+
+/* ==========================================================================
+   #SocialMedia
+   ========================================================================== */
+
+a.social-icon {
+    background-color: #252525;
+    color: #fff;
+}
+
+a.facebook-icon:hover {
+    background-color: #0e59a0 !important;
+}
+
+a.twitter-icon:hover {
+    background-color: #0ea4ff !important;
+}
+
+a.dribble-icon:hover {
+    background-color: #ea73a0 !important;
+}
+
+a.pinterest-icon:hover {
+    background-color: #d73532 !important;
+}
+
+a.googleplus-icon:hover {
+    background-color: #282927 !important;
+}
+
+a.tumblr-icon:hover {
+    background-color: #586980 !important;
+}
+
+a.instagram-icon:hover {
+    background-color: #82685a !important;
+}
+
+a.rss-icon:hover {
+    background-color: #f79638 !important;
+}
+
+a.linkedin-icon:hover {
+    background-color: #018faf !important;
+}
+
+a.skype-icon:hover {
+    background-color: #00b0f6 !important;
+}
+
+a.flickr-icon:hover {
+    background-color: #0061db !important;
+}
+
+a.vimeo-icon:hover {
+    background-color: #63879c !important;
+}
+
+a.github-icon:hover {
+    background-color: #3b3b3b !important;
+}
+
+a.youtube-icon:hover {
+    background-color: #cc181e !important;
+}
+
+a.windows-icon:hover {
+    background-color: #6dc2e9 !important;
+}
+
+a.dropbox-icon:hover {
+    background-color: #007ee5 !important;
+}
+
+a.xing-icon:hover {
+    background-color: #026566 !important;
+}
+
+/* ==========================================================================
+   #Styled Tables
+   ========================================================================== */
+
+.table-bordered {
+    border: 1px solid #efefef;
+}
+
+.table-bordered th {
+    border-left: 1px solid #fff;
+    background-color: #2767a4;
+    color: #fff;
+}
+
+.table-bordered td {
+    border-left: 1px solid #efefef;
+}
+
+.table-striped tbody tr:nth-child(odd) td,
+.table-striped tbody tr:nth-child(odd) th {
+    background-color: #f9f9f9;
+}
+
+@media (max-width: 480px) {
+
+    tr {
+        border-top: 1px solid #555;
+    }
+
+}
+
+/* ==========================================================================
+   #Tabs
+   ========================================================================== */
+
+.tabs-container .tabs-menu {
+    border-bottom: 1px solid #e9e9e9;
+}
+
+.tabs-container .tabs-menu li a {
+    border: 1px solid #e7e7e7;
+    background-color: #2767a4;
+    color: #fff;
+}
+
+.tabs-container .tabs-menu li:first-child a {
+    border-left: 1px solid #e7e7e7;
+}
+
+.tabs-container .tabs-menu li.active a {
+    border-left: 1px solid #e7e7e7;
+    border-bottom-color: #fff;
+    background-color: #fff;
+    color: #666;
+}
+
+.tabs-container .tabs {
+    border: 1px solid #e9e9e9;
+}
+
+.vertical-tabs-container {
+    border: 1px solid #e7e7e7;
+    background-color: #2767a4;
+}
+
+.vertical-tabs-container .tabs-menu {
+    border-right: 1px solid #e7e7e7;
+}
+
+.vertical-tabs-container .tabs-menu li a {
+    border-bottom: 1px solid #e7e7e7;
+    border-right: 1px solid #e7e7e7;
+    background-color: #2767a4;
+    color: #fff;
+}
+
+.vertical-tabs-container .tabs-menu li.active a {
+    border-right-color: #fff;
+    background-color: #fff;
+    color: #666;
+}
+
+.vertical-tabs-container .tabs {
+    background-color: #fff;
+}
+
+@media (max-width: 767px) {
+
+    .tabs-container .tabs-menu li a {
+        border: 1px solid #e7e7e7;
+    }
+
+    .tabs-container .tabs-menu li:first-child a {
+        border-top: 1px solid #e7e7e7;
+    }
+
+    .tabs-container .tabs-menu li.active a {
+        border-bottom-color: #555;
+        background-color: #fff;
+        color: #666;
+    }
+
+    .vertical-tabs-container .tabs-menu li.active a {
+        border-bottom-color: #333;
+    }
+
+}
+
+/* ==========================================================================
+   #Testimonials
+   ========================================================================== */
+
+.testimonial blockquote {
+    border: 1px solid #ddd;
+    background-color: #ebebeb;
+}
+
+.testimonial blockquote:after,
+.testimonial blockquote:before {
+    border-color: #ebebeb rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #ebebeb;
+    border-width: 10px;
+}
+
+.testimonial a {
+    color: #555;
+}
+
+.testimonial h5 span {
+    color: #999;
+}
+
+/* ==========================================================================
+#General Layout
+========================================================================== */
+
+#wrap {
+    background-color: #fff;
+}
+
+/* ==========================================================================
+   #Page Styles
+   ========================================================================== */
+
+/* CV Section */
+
+.cv-section {
+    border-top: 1px solid #dadada;
+}
+
+#header .cv-section:first-child {
+    border-top: 10px solid #2767a4;
+}
+
+/* CV Section Title */
+
+.cv-section-title img {
+    border: 1px solid #dadada;
+}
+
+.cv-section-title h2 {
+    color: #b1b1b1;
+    line-height: 28px;
+}
+
+/* CV Item */
+
+.cv-item {
+    border-bottom: 1px solid #dadada;
+}
+
+.period {
+    background-color: #b1b1b1;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.cv-item:hover .period {
+    background-color: #2767a4;
+}
+
+/* Copyright */
+
+.copyright {
+    background-color: #2767A4;
+    color: #fff;
+}
+
+/* Isotope */
+
+.portfolio-items li a {
+    color: #2767a4;
+}
+
+/* Portfolio filter */
+
+.portfolio-filter ul li a {
+    color: #444;
+}
+
+.portfolio-filter ul li a:hover,
+.portfolio-filter ul li a.active {
+    background-color: #b1b1b1;
+    color: #fff;
+}
+
+/* CV Contact */
+
+.cv-contact {
+    background-color: #fff;
+}
+
+.cv-contact-toggle {
+    background-color: #2767a4;
+}
+
+.cv-contact-toggle i {
+    color: #fff;
+}
+
+.cv-contact-toggle:hover {
+    background-color: #1f5081;
+}
+
+/* Contact Form */
+
+label.validation-error {
+    color: #b55454;
+}
+
+input.validation-error,
+textarea.validation-error,
+select.validation-error {
+    border: 1px solid #a1a1a1;
+}
+
+#contact-form input[type="submit"] {
+    background-color: #252525;
+    color: #fff;
+}
+
+#contact-form input[type="submit"]:hover {
+    background-color: #000;
+}
+
+/* Print & Download PDF Buttons */
+
+#print,
+#pdf {
+    background-color: #2767a4;
+}
+
+#print i,
+#pdf i {
+    color: #fff;
+}
+
+#print:hover,
+#pdf:hover {
+    background-color: #1f5081;
+}
+
+
+/* ==========================================================================
+   #Responsive
+   ========================================================================== */
+
+/* #Mobile (Portrait and Landscape )
+   ========================================================================== */
+
+@media (max-width: 767px) {
+
+    body {
+        background-color: #fff;
+    }
+
+}
+
+/* #LOADER
+========================================================================== */
+
+.bx-wrapper .bx-loading {
+    background: #fff url(../../js/bxslider/images/bx_loader.gif) center center no-repeat;
+}
+
+/* #PAGER
+   ========================================================================== */
+
+.bx-wrapper .bx-pager {
+    color: #666;
+}
+
+.bx-wrapper .bx-pager.bx-default-pager a {
+    background: #666;
+}
+
+.bx-wrapper .bx-pager.bx-default-pager a:hover,
+.bx-wrapper .bx-pager.bx-default-pager a.active {
+    background: #000;
+}
+
+/* #DIRECTION CONTROLS (NEXT / PREV)
+   ========================================================================== */
+
+.bx-wrapper .bx-prev {
+    background: url(../../js/bxslider/images/bg_direction_nav.png) no-repeat center left;
+}
+
+.bx-wrapper .bx-next {
+    background: url(../../js/bxslider/images/bg_direction_nav.png) no-repeat center right;
+}
+
+/* #AUTO CONTROLS (START / STOP)
+   ========================================================================== */
+
+.bx-wrapper .bx-controls-auto {
+    text-align: center;
+}
+
+.bx-wrapper .bx-controls-auto .bx-start {
+    background: url(../../js/bxslider/images/controls.png) -86px -11px no-repeat;
+}
+
+.bx-wrapper .bx-controls-auto .bx-stop {
+    background: url(../../js/bxslider/images/controls.png) -86px -44px no-repeat;
+}
+
+/* #IMAGE CAPTIONS
+   ========================================================================== */
+
+.bx-wrapper .bx-caption {
+    background: rgba(80, 80, 80, 0.75);
+}
+
+.bx-wrapper .bx-caption span {
+    color: #fff;
+}
+
+/* #SLIDE TEXT
+   ========================================================================== */
+
+.slidetext {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #aeb0b3;
+}
+
+.slidetext h2,
+.slidetext h3 {
+    color: #ffffff;
+}
+
+.slidetext a,
+.slidetext h2 a,
+.slidetext h3 a {
+    color: #ffffff;
+}
+
+/* #Mobile ( Landscape )
+  ========================================================================== */
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+    .row {
+        padding: 0 40px;
+    }
+
+    .cv-section {
+        padding: 65px 40px;
+    }
+
+    /* Portfolio Items */
+    .portfolio-items li {
+        float: left;
+        width: 50%;
+    }
+
+}
