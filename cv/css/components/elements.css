@@ -577,32 +577,6 @@ ul.fill-circle li:before {
 }
 
 /* ==========================================================================
-   #Dividers
-   ========================================================================== */
-
-.divider {
-    margin: 30px 0;
-}
-
-.divider.single-line {
-    border-top: 1px solid #e2e2e2;
-}
-
-.divider.double-line {
-    border-top: 4px double #e2e2e2;
-}
-
-.divider.single-dotted {
-    height: 1px;
-    background: url(../images/bg-single-dotted.gif) repeat-x top left;
-}
-
-.divider.double-dotted {
-    height: 4px;
-    background: url(../images/bg-double-dotted.gif) repeat-x top left;
-}
-
-/* ==========================================================================
    #Google Maps
    ========================================================================== */
 
@@ -830,76 +804,6 @@ ul.fill-circle li:before {
 .milestone .milestone-description {
     font-size: 14px;
     line-height: 21px;
-}
-
-/* ==========================================================================
-   #Parallax
-   ========================================================================== */
-
-.parallax {
-    overflow: hidden;
-    margin-bottom: 30px;
-    background-attachment: scroll;
-    background-repeat: no-repeat;
-    background-position: 50% 0;
-    -webkit-background-size: cover;
-    background-size: cover;
-}
-
-.parallax.parallax-enabled {
-    background-attachment: fixed !important;
-}
-
-/*
- * 1. Overwite element color when in parallax
- */
-
-.parallax {
-    color: #fff;
-}
-
-/* 1 */
-
-.parallax h1,
-.parallax h2,
-.parallax h3,
-.parallax h4,
-.parallax h5,
-.parallax h6 {
-    color: #fff;
-}
-
-.parallax abbr[title] {
-    border-bottom: 1px dotted #fff;
-}
-
-/*
- * 1. added this because adding position: relative; to .parallax breaks parallax backgrounds in chrome
- * 2. Parallax texture overlay
- * 3. should be used to wrap parallax content if you are using a Parallax texture overlay
- *
- */
-
-.parallax-content { /* 1 */
-    position: relative;
-    z-index: 1;
-}
-
-.parallax-overlay { /* 2 */
-    position: absolute;
-    z-index: 2;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-attachment: scroll;
-    background-repeat: repeat;
-    background-position: 0 0;
-}
-
-.parallax-content-inner { /* 3 */
-    position: relative;
-    z-index: 3;
 }
 
 /* ==========================================================================

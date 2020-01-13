@@ -83,8 +83,8 @@
 }
 
 .cv-section-title h1 small {
-    font-size: 22px;
-    line-height: 48px;
+    font-size: 20px;
+    line-height: 40px;
     text-transform: uppercase;
     display: block;
 }
@@ -519,8 +519,8 @@ select.validation-error {
    ========================================================================== */
 
 body {
-    background: #222 url(../img/bg-body18.png) repeat top left;
     color: #444;
+    background: #222 url(../img/background.png) repeat fixed top left;
 }
 
 h1,
@@ -833,26 +833,6 @@ ul.fill-circle li:before {
 }
 
 /* ==========================================================================
-   #Dividers
-   ========================================================================== */
-
-.divider.single-line {
-    border-top: 1px solid #e2e2e2;
-}
-
-.divider.double-line {
-    border-top: 4px double #e2e2e2;
-}
-
-.divider.single-dotted {
-    background: url(../../images/bg-single-dotted.gif) repeat-x top left;
-}
-
-.divider.double-dotted {
-    background: url(../../images/bg-double-dotted.gif) repeat-x top left;
-}
-
-/* ==========================================================================
    #Icon Boxes
    ========================================================================== */
 
@@ -911,27 +891,6 @@ ul.fill-circle li:before {
 
 .icon-box-5:hover > i {
     color: #2767a4;
-}
-
-/* ==========================================================================
-   #Parallax
-   ========================================================================== */
-
-.parallax {
-    color: #fff;
-}
-
-.parallax h1,
-.parallax h2,
-.parallax h3,
-.parallax h4,
-.parallax h5,
-.parallax h6 {
-    color: #fff;
-}
-
-.parallax abbr[title] {
-    border-bottom: 1px dotted #fff;
 }
 
 /* ==========================================================================
@@ -1336,13 +1295,6 @@ select.validation-error {
 
 }
 
-/* #LOADER
-========================================================================== */
-
-.bx-wrapper .bx-loading {
-    background: #fff url(../../js/bxslider/images/bx_loader.gif) center center no-repeat;
-}
-
 /* #PAGER
    ========================================================================== */
 
@@ -1357,32 +1309,6 @@ select.validation-error {
 .bx-wrapper .bx-pager.bx-default-pager a:hover,
 .bx-wrapper .bx-pager.bx-default-pager a.active {
     background: #000;
-}
-
-/* #DIRECTION CONTROLS (NEXT / PREV)
-   ========================================================================== */
-
-.bx-wrapper .bx-prev {
-    background: url(../../js/bxslider/images/bg_direction_nav.png) no-repeat center left;
-}
-
-.bx-wrapper .bx-next {
-    background: url(../../js/bxslider/images/bg_direction_nav.png) no-repeat center right;
-}
-
-/* #AUTO CONTROLS (START / STOP)
-   ========================================================================== */
-
-.bx-wrapper .bx-controls-auto {
-    text-align: center;
-}
-
-.bx-wrapper .bx-controls-auto .bx-start {
-    background: url(../../js/bxslider/images/controls.png) -86px -11px no-repeat;
-}
-
-.bx-wrapper .bx-controls-auto .bx-stop {
-    background: url(../../js/bxslider/images/controls.png) -86px -44px no-repeat;
 }
 
 /* #IMAGE CAPTIONS
@@ -1435,7 +1361,7 @@ select.validation-error {
     }
 }
 
-@media only screen and (min-width: 480px) and (max-width: 767px) {
+@media only screen and (max-width: 767px) {
     .cv-section-title h1 {
         font-size: 28px;
         line-height: 28px;

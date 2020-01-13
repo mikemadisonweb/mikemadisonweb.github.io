@@ -76,26 +76,6 @@
 	}
 
 /* ==========================================================================
-   enableParallax
-   ========================================================================== */
-
-	function enableParallax() {
-
-		if(typeof $.fn.parallax != 'undefined'){
-			
-			$('.parallax').each(function() {
-	
-				var $t = $(this);
-				$t.addClass("parallax-enabled");
-				$t.parallax("49%", 0.3, false);
-	
-			});
-			
-		}
-
-	}
-
-/* ==========================================================================
    handleContactForm - validate and ajax submit contat form
    ========================================================================== */
 
