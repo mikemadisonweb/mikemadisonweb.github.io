@@ -1433,5 +1433,20 @@ select.validation-error {
         float: left;
         width: 50%;
     }
+}
 
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .cv-section-title h1 {
+        font-size: 28px;
+        line-height: 28px;
+    }
+
+    .cv-section-title h1 small {
+        font-size: 18px;
+        line-height: 30px;
+    }
+
+    .cv-section-title img {
+        width: 120px;
+    }
 }

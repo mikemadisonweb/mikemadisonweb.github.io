@@ -1507,3 +1507,13 @@ a.xing-icon:hover {
     height: 50px;
     border: 1px solid #eee;
 }
+
+.top-right {
+    float: right;
+    width: 30%;
+}
+
+.top-left {
+    float: left;
+    width: 70%;
+}
