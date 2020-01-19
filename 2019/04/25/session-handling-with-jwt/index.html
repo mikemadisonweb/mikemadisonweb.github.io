@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Session handling with JWT · todo(): redo · Mikhail Bakulin's blog</title><meta name="description" content="JWT vs cache-based session handling comparison"><meta name="keywords"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon_tree.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://mikemadisonweb.github.io/atom.xml" title="todo(): redo · Mikhail Bakulin's blog"><!-- Global Site Tag (gtag.js) - Google Analytics--><script async src="//www.googletagmanager.com/gtag/js?id=UA-106650807-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments)};
+gtag('js', new Date());
+gtag('config', 'UA-106650807-1');</script></head><body><div class="fixed-width"><header><a class="logo-link" href="/"><img src="/favicon_tree.png" alt="logo"><h1 class="logo-text"><span class="logo-slashes">// todo():</span><span>redo</span></h1></a><ul class="nav nav-list"><li class="nav-list-item"><a class="nav-list-link" href="/" target="_self">BLOG</a></li><li class="nav-list-item"><a class="nav-list-link" href="/archives/" target="_self">ARCHIVE</a></li><li class="nav-list-item"><a class="nav-list-link" href="/cv/" target="_self">ABOUT</a></li></ul></header></div><main class="container"><div class="post-img-container"><img class="post-img" src="https://mikemadisonweb.github.io/2019/04/25/session-handling-with-jwt/session-handling-with-jwt.jpg"></div><div class="fixed-width"><div class="post"><article class="post-block"><h1 class="post-title"><span class="pre-title">//&nbsp;todo():&nbsp;</span>Session handling with JWT</h1><div class="post-tags"><a class="post-tag" href="/tags/JWT/">JWT</a><a class="post-tag" href="/tags/Session/">Session</a><a class="post-tag" href="/tags/JSON/">JSON</a></div><div class="post-date">Apr 25, 2019</div><div class="post-content"><p>Json Web Token (JWT) is a standard that defines a way how to securely transmit valuable data between distributed systems as a set of claims encoded as a JSON object (<a href="https://tools.ietf.org/html/rfc7519" target="_blank" rel="noopener">RFC7519</a>). JWT is not designed specifically for the user authorization, but for the secure data transmission between two parties in general. There are two the most widely used implementations of the JWT: JSON Web Signature and JSON Web Encoding.<br><a id="more"></a></p>
+<h2 id="JSON-Web-Signature-JWS"><a href="#JSON-Web-Signature-JWS" class="headerlink" title="JSON Web Signature (JWS)"></a>JSON Web Signature (JWS)</h2><p>The data integrity is guaranteed by the digital signature. The token, in this case, consists of three parts:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Javascript Object Signing and Encryption (JOSE) Headers</span></span><br><span class="line">&#123;   </span><br><span class="line">    <span class="string">"alg"</span>:<span class="string">"HS256"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// JWT Claims (Payload)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"userId"</span>: <span class="number">12234</span>,</span><br><span class="line">    <span class="string">"firstName"</span>: <span class="string">"John"</span>,</span><br><span class="line">    <span class="string">"lastName"</span>: <span class="string">"Doe"</span>,</span><br><span class="line">    <span class="string">"exp"</span>: <span class="number">1516239022</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Signature</span></span><br><span class="line">GuoUe6tw79bJlbU1HU0ADX0pr0u2kf3r_4OdrDufSfQ</span><br></pre></td></tr></table></figure></p>
+<p>Headers provide meta information about the token. The payload may contain your arbitrary key-value data(private claims), but also could contain pre-defined keys, so-called <a href="https://tools.ietf.org/html/rfc7519#section-4.1" target="_blank" rel="noopener">registered claim names</a>, for example, “iat” (Issued At), “exp” (Expiration time), “sub” (Subject) etc. The signature is a hash string generated using the mentioned in the headers algorithm and a secret key securely stored on the sever-side.</p>
+<p>These values are encoded with URL-safe Base64 schema and concatenated together separated by dots:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.yKOB4jkGWu7twu8Ts9zju01E10_CPedLJkoJFCan5J4</span><br></pre></td></tr></table></figure></p>
+<p>In this form, it could be used by the client to prove his identity. The general use-cases include:</p>
+<ul>
+<li>pass to frontend application after the username/password authentication</li>
+<li>pass as a cookie, like a usual stateful session ID</li>
+<li>pass between distributed RESTful APIs as an HTTP header</li>
+</ul>
+<p>It is important to note that JWS implementation is signed and encoded but not encrypted anyhow. That way, the payload of the token could be easily read by all of the participants. If a malicious user would try to tamper the content, the token would be rejected by the server as it would not match the signature anymore.</p>
+<h2 id="JSON-Web-Encoding-JWE"><a href="#JSON-Web-Encoding-JWE" class="headerlink" title="JSON Web Encoding (JWE)"></a>JSON Web Encoding (JWE)</h2><p>The JWE scheme encrypts the content instead of signing it. That way it guarantees confidentiality.<br>So in order to hide the payload content of the token, JWE could be used separately or in conjunction with JWS. To identify the JWE, one should look at the “enc” (Encryption algorithm) value in the JOSE headers. If the entry exists and not empty, it is a JWE.<br>There are two serialized forms to represent the encrypted payload: the JWE compact serialization and JWE JSON serialization. For those who are interested especially in JWE, I would recommend reading <a href="https://medium.facilelogin.com/jwt-jws-and-jwe-for-not-so-dummies-b63310d201a3" target="_blank" rel="noopener">this blog post</a>.<br>Compact serialization contain five base64Url-encoded parts separated by dots:</p>
+<ul>
+<li>JOSE header</li>
+<li>JWE encrypted Key</li>
+<li>JWE initialization vector</li>
+<li>JWE ciphertext</li>
+<li>JWE Authentication Tag</li>
+</ul>
+<p>JSON serialization is represented as a JSON object containing some or all of these eight entries:</p>
+<ul>
+<li>“protected” (JWE Protected Header)</li>
+<li>“unprotected” (JWE Shared Unprotected Header)</li>
+<li>“header” <em>(JWE Per-Recipient Unprotected Header)</em></li>
+<li>“encrypted<em>key” </em>(JWE Encrypted Key)*</li>
+<li>“iv” <em>(JWE Initialization Vector)</em></li>
+<li>“ciphertext” <em>(JWE Ciphertext)</em></li>
+<li>“tag” <em>(JWE Authentication Tag)</em></li>
+<li>“aad” <em>(JWE Additional authenticated data)</em></li>
+</ul>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><p>This is a JWT usage example of short-term tokens needed role-based CDN content access.</p>
+<pre class="mermaid">sequenceDiagram
+    participant c as User
+    participant a as Auth server
+    participant b as CDN
+    c->>a: POST /grant-access
+    activate a
+    note right of a:Check<br>the permissions<br>based on the session
+    a-->>c: [200] Generated JWT
+    deactivate a
+    c->>b: POST /get-content
+    activate b
+    Note right of b: CDN validate<br>the provided JWT,<br>no session storage<br>is needed
+    b-->>c: [200] Content
+    deactivate b</pre>
+
+<h2 id="Pros-and-cons-of-JWT"><a href="#Pros-and-cons-of-JWT" class="headerlink" title="Pros and cons of JWT"></a>Pros and cons of JWT</h2><h4 id="Pros"><a href="#Pros" class="headerlink" title="Pros"></a>Pros</h4><ul>
+<li>All authentication logic could be isolated in the dedicated auth-server. Only this server will have the private key, and the rest of the servers will have the public key to verify the signature. If you have a microservice application, it promotes better architecture, because there is no direct connection between the auth-server and the rest of the servers. The authentication is done by the auth-server, and any internal API, which knows nothing about the user session, could do the authorization.</li>
+<li>If properly implemented, the solution if fully stateless, meaning no shared session storage or sticky session solutions are needed. As a bonus, it reduces the number of queries and sometimes eliminates the need in the persistence layer at all.</li>
+<li>Authorization when working with third-party services.</li>
+<li>One session could be simultaneously conducted on multiple devices at the same time.</li>
+</ul>
+<h4 id="Cons"><a href="#Cons" class="headerlink" title="Cons"></a>Cons</h4><ul>
+<li>The size of the token could grow out of proportions really fast if the new data is added to the token payload without control. The size of the token is adding to the size of each request, propagated to each of the microservices, and it could be an issue for the heavy load applications. Just the token containing the userId is nearly 50 times bigger than the plainly passed userId (depends on used JOSE headers and claims), so in the best scenario, the amount of data passed in the token should be small, and the extension should be forbidden.</li>
+<li>There is no way to invalidate users partially. If JWT contains user roles, for example, or other information that could change in the process, corresponding JWT would still contain the old data until the token is expired. From the other side, if the secret key was compromised by a careless or a rogue developer/administrator, all of the users need to log out for security purposes. It could be an issue for big applications.</li>
+<li>When implemented badly, it is nothing more than to the same plain-old stateful session handling, only in the fancy JWT wrapper. If you need to request the database to retrieve user information in nearly every API that receives a request with JWT, it is a bad sign.</li>
+</ul>
+<h2 id="Security-related-considerations"><a href="#Security-related-considerations" class="headerlink" title="Security-related considerations"></a>Security-related considerations</h2><p>Things that need to be done always:</p>
+<ul>
+<li>Both headers and payload must be signed.<br>Choose a strong algorithm. The worst case is ‘None’, which means the signature will not be checked. One should prefer ‘HS<strong><em>‘ to ‘RS</em></strong>‘ algorithms, if possible.</li>
+<li>Store it properly on the client-side. The only good practice is to store it in a cookie, with usual restrictions like path, scope, etc.</li>
+<li>Don’t put sensitive data in the JWS payload. These include passwords, since headers and payload are only base64encoded and not encrypted, so everyone can decode the content of JWT to get its cleartext data. Use JWE if sensitive data transmission is necessary.</li>
+<li>Use HTTPS for all of the requests.</li>
+</ul>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>By introducing JWT instead of the “old-fashioned” stateful solution you can benefit from the following:</p>
+<ul>
+<li>No need in a cross-cluster replicated session storage.</li>
+<li>Propagation of the same user data to the internal APIs using a single middleware. However, JWT is not a single way how to achieve this.</li>
+<li>Each internal API could validate the token without any external dependency.</li>
+</ul>
+<p>What I am trying to convey is to consider these points or make up your own before deciding to use JWT. If you have a stateful session handling already implemented, just consider the amount of refactoring that would be needed. It may not be worth the efforts. I am not against JWT at all. Some developers are confusing the idea of JWT to be a substitute for the stateful sessions. It is not true. JWT is not a new shiny way to handle sessions. It is a standard of creating tokens, which by the way, could be used for sessions, but not only. Stateless session handling makes sense in some cases, did not make sense in others. Just think about your specific situation first to make the right decision.</p>
+</div><p class="ending"><i>That's all for today. Happy coding!</i></p></article></div></div></main><div class="fixed-width"><footer><div class="paginator"><a class="next" href="/2018/12/18/git-hook-prepending-commit-message/">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'mikemadison';
+var disqus_identifier = '2019/04/25/session-handling-with-jwt/';
+var disqus_title = 'Session handling with JWT';
+var disqus_url = 'https://mikemadisonweb.github.io/2019/04/25/session-handling-with-jwt/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//mikemadison.disqus.com/count.js" async></script><div class="copyright"><p><a href="/atom.xml"><img class="rss-icon" src="/images/rss_ico.png"><span> Feed |</span></a><a href="/sitemap.xml"><span> Sitemap |</span></a><span> © 2016 - 2020 <a href="https://mikemadisonweb.github.io">Mikhail Bakulin</a>, powered by <a target="_blank">Hexo</a>.</span></p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script src="//unpkg.com/mermaid@8.4.4/dist/mermaid.min.js?v=undefined" id="maid-script" mermaidoptioins="{&quot;startOnLoad&quot;:true,&quot;theme&quot;:&quot;forest&quot;,&quot;fontFamily&quot;:&quot;sourcesanspro, Helvetica Neue, Arial, sans-serif&quot;,&quot;logLevel&quot;:3,&quot;sequence&quot;:{&quot;showSequenceNumbers&quot;:true,&quot;useMaxWidth&quot;:true,&quot;actorFontFamily&quot;:&quot;sourcesanspro, Helvetica Neue, Arial, sans-serif&quot;}}"></script><script>if (window.mermaid) {
+    var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
+    mermaid.initialize(options);
+}</script></body></html>
